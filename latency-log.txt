@@ -1,2 +1,0 @@
-first time:  requests got slow for a while, then it cleared up on its own - nobody dug into why
-second time: the exact same slow-down came back, and this time it did not clear up on its own
