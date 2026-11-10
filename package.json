@@ -1,0 +1,9 @@
+{
+  "name": "slow-api-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Minimal API-key-protected API that hashes the key with argon2 on every request, and a cache that fixes it.",
+  "dependencies": {
+    "argon2": "0.45.2"
+  }
+}
