@@ -1,16 +1,16 @@
 # API key check that re-hashes on every request
 
 A minimal API over plain `node:http`. Every authenticated request checks the API key with a real
-`argon2.verify` call, the same as checking a password. At the library defaults that costs hundreds
-of milliseconds of CPU, so on a small shared-CPU machine, a client that polls a few times a second
-can out-spend the machine's CPU baseline by itself - no database involved.
+`argon2.verify` call, the same as checking a password. At the library defaults that costs tens of milliseconds of CPU on a fast machine and several
+hundred on a small shared CPU, so a client that polls every few seconds can out-spend such a
+machine's CPU baseline by itself, with no database involved.
 
 Set `KEY_CACHE_MS` to a number of milliseconds to remember a key that already passed argon2,
 keyed by a fast hash of the raw key, not the raw key itself. A cache hit still re-reads the stored
 record and compares its hash, so a revoked key is rejected on the very next request.
 
     docker build -t slow-api-demo .
-    docker run --rm --cpus 0.25 slow-api-demo
+    docker run --rm slow-api-demo
 
 ## Try it without the cache (the slow path)
 
